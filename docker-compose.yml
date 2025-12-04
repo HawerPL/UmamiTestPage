@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  umami-test-app:
+    build:
+      context: umami-test-app
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    restart: unless-stopped
+    container_name: umami-test-app
+    environment:
+      - NODE_ENV=production
+      - VITE_UMAMI_WEBSITE_ID=${VITE_UMAMI_WEBSITE_ID}
+      - VITE_UMAMI_SCRIPT_URL=${VITE_UMAMI_SRC:-http://localhost:3000/script.js}
